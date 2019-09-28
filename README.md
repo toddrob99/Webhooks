@@ -20,9 +20,13 @@ Install from PyPI using pip
     * `*args` parameter will be a tuple of URL path components
     * `**kwargs` parameter will be a dictionary of URL parameters
     * Get the body of a `POST` request from `request.body.read` passing the length of `request.headers['Content-Length']`: `request.body.read(int(request.headers['Content-Length'])) if int(request.headers.get('Content-Length',0)) > 0 else ''`
-
+    * Note: The body will be a byte array, and not a string. You may need to decode it to a string. For example:
+        ```
+        import json
+        body_raw = request.body.read(int(request.headers['Content-Length'])) if int(request.headers.get('Content-Length',0)) > 0 else '{}'
+        body = json.loads(body_raw.decode('utf-8'))
+        ```
 * Include webhook-listener in your project
-
 * Create an instance of the webhook_listener.Listener class
     * handlers = Dictionary of functions/callables for each supported HTTP method. (Example: {'POST':process_post_request, 'GET':process_get_request})
     * port = Port for the web server to listen on (default: 8090)
@@ -30,9 +34,7 @@ Install from PyPI using pip
     * threadPool = Number of worker threads for the web server (default: 10)
     * logScreen = Setting for cherrypy to log to screen (default: False)
     * autoReload = Setting for cherrypy to auto reload when python files are changed (default: False)
-
 * Start the Listener
-
 * Keep your application running so the Listener can run in a separate thread
 
 ## Example
