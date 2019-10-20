@@ -14,6 +14,8 @@ import json
 import time
 import threading
 
+__version__ = '0.0.1'
+
 class Listener(object):
     def __init__(self, *args, **kwargs):
         self.logger = logging.getLogger('webhooks')
