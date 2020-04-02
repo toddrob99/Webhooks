@@ -9,7 +9,7 @@ import logging
 import cherrypy
 import threading
 
-__version__ = "0.0.2"
+__version__ = "0.0.3"
 
 
 class Listener(object):
@@ -25,8 +25,9 @@ class Listener(object):
 
     def start(self):
         self.WEBTHREAD = threading.Thread(
-            target=self._startServer, name="webhooks_websever", daemon=True
+            target=self._startServer, name="webhooks_websever"
         )
+        self.WEBTHREAD.daemon = True
         self.WEBTHREAD.start()
 
     def stop(self):
