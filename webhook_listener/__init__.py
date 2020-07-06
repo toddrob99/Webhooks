@@ -31,7 +31,7 @@ class Listener(object):
         self.WEBTHREAD.start()
 
     def stop(self):
-        cherrypy.engine.stop()
+        cherrypy.engine.exit()
         self.WEBTHREAD = None
 
     def _startServer(self):
