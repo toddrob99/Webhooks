@@ -9,7 +9,7 @@ import logging
 import cherrypy
 import threading
 
-__version__ = "1.0.0"
+__version__ = "1.1.0"
 
 
 class Listener(object):
@@ -96,7 +96,7 @@ class WebServer(object):
                         self.handlers[cherrypy.request.method]
                     )
                 )
-                self.handlers[cherrypy.request.method](
+                handler_response = self.handlers[cherrypy.request.method](
                     cherrypy.request, *args, **kwargs
                 )
             else:
@@ -108,4 +108,4 @@ class WebServer(object):
                 cherrypy.response.status = 500  # Internal Server Error
                 return
 
-        return "OK"
+        return handler_response or "OK"
