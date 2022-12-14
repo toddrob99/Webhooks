@@ -25,6 +25,7 @@ class Listener(object):
         self.sslModule = kwargs.get("sslModule", "builtin")
         self.sslCert = kwargs.get("sslCert", "")
         self.sslPrivKey = kwargs.get("sslPrivKey", "")
+        self.sslCertChain = kwargs.get("sslCertChain", "")
 
     def start(self):
         self.WEBTHREAD = threading.Thread(
@@ -48,6 +49,7 @@ class Listener(object):
                 "server.ssl_module": self.sslModule,
                 "server.ssl_certificate": self.sslCert,
                 "server.ssl_private_key": self.sslPrivKey,
+                "server.ssl_certificate_chain": self.sslCertChain,
             }
         }
         apiConf = {

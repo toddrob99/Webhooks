@@ -37,6 +37,7 @@ Install from PyPI using pip
     * sslModule = Select which SSL library to use (default: 'builtin')
     * sslCert = Path to the certificate (SSL is disabled when empty)
     * sslPrivKey = Path to the certificate's private key (SSL is disabled when empty)
+    * sslCertChain = Path to the full certificate chain
       see https://cherrypydocrework.readthedocs.io/deploy.html#ssl-support for more information on SSL support
 * Start the Listener
 * Keep your application running so the Listener can run in a separate thread
