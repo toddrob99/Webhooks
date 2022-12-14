@@ -9,7 +9,7 @@ import logging
 import cherrypy
 import threading
 
-__version__ = "1.1.0"
+__version__ = "1.2.0"
 
 
 class Listener(object):
@@ -22,6 +22,10 @@ class Listener(object):
         self.logScreen = kwargs.get("logScreen", False)
         self.autoReload = kwargs.get("autoReload", False)
         self.handlers = kwargs.get("handlers", {})
+        self.sslModule = kwargs.get("sslModule", "builtin")
+        self.sslCert = kwargs.get("sslCert", "")
+        self.sslPrivKey = kwargs.get("sslPrivKey", "")
+        self.sslCertChain = kwargs.get("sslCertChain", "")
 
     def start(self):
         self.WEBTHREAD = threading.Thread(
@@ -42,6 +46,10 @@ class Listener(object):
                 "server.thread_pool": self.threadPool,
                 "engine.autoreload.on": self.autoReload,
                 "log.screen": self.logScreen,
+                "server.ssl_module": self.sslModule,
+                "server.ssl_certificate": self.sslCert,
+                "server.ssl_private_key": self.sslPrivKey,
+                "server.ssl_certificate_chain": self.sslCertChain,
             }
         }
         apiConf = {
