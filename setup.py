@@ -1,14 +1,12 @@
 import setuptools
-import os
+from webhook_listener import version
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
-import webhook_listener
-
 setuptools.setup(
     name="Webhook_Listener",
-    version=webhook_listener.__version__,
+    version=version.__version__,
     author="Todd Roberts",
     author_email="todd@toddrob.com",
     description="Very basic webserver module to listen for webhooks and forward requests to predefined functions.",

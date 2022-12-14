@@ -8,8 +8,9 @@ https://github.com/toddrob99/Webhooks
 import logging
 import cherrypy
 import threading
+from . import version
 
-__version__ = "1.2.0"
+__version__ = version.__version__
 
 
 class Listener(object):
